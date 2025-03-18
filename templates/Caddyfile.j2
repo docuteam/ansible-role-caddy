@@ -20,6 +20,18 @@
 
   {%- endif %}
 
+  {%- if site.ip_ranges_blocklist is defined %}
+  @bad_ip_ranges {
+    remote_ip {{ site.ip_ranges_blocklist | join(' ') }}
+  }
+
+  handle @bad_ip_ranges {
+      respond 403 {
+          body "Access forbidden."
+      }
+  }
+  {%- endif %}
+
   {%- if site.allowlist is defined %}
   @allowlist {
     remote_ip {% for ip in site.allowlist %} {{ ip }}{% endfor %}
