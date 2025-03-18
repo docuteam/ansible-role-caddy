@@ -27,6 +27,10 @@
           - '8080'
           - '1337'
         additional_template_path: "./templates/additions.j2"
+        ip_ranges_blocklist:
+          - "47.76.0.0/14"
+          - "47.74.0.0/15"
+          - "47.80.0.0/13"
       - domain: test.com
         routes:
           - path: ''
